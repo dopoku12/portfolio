@@ -23,21 +23,21 @@ import {
   TraceTitle,
 } from '#/components/ui/trace'
 import {
-  Braces,
+  BracketsCurly,
   Briefcase,
   Cloud,
-  Code2,
-  Container,
+  Code,
   CreditCard,
   Database,
-  FlaskConical,
-  Layers,
+  Flask,
+  GitBranch,
   MapPin,
+  Package,
   ShieldCheck,
+  Stack,
   Terminal,
-  Workflow,
-  type LucideIcon,
-} from 'lucide-react'
+  ArrowSquareOut,
+} from '@phosphor-icons/react'
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -213,8 +213,8 @@ function JobTimelineItem({ job }: { job: (typeof allJobs)[number] }) {
     <TraceCollapsible defaultOpen>
       <TraceCollapsibleTrigger className="w-full">
         <TraceLine className="w-full items-start gap-3 rounded-xl border border-[var(--line)] bg-[var(--card)] p-4 shadow-sm hover:bg-[var(--accent)]">
-          <TraceIcon className="mt-0.5 size-9 rounded-full bg-[var(--accent)] text-[var(--primary)] [&_svg:not([class*='size-'])]:size-4">
-            <Briefcase aria-hidden="true" />
+          <TraceIcon className="mt-0.5 size-10 rounded-full bg-[var(--accent)] text-[var(--primary)] [&_svg:not([class*='size-'])]:size-5">
+            <Briefcase aria-hidden="true" size={22} weight="duotone" />
           </TraceIcon>
           <span className="min-w-0 flex-1">
             <TraceTitle className="block text-base font-semibold text-[var(--sea-ink)]">
@@ -265,27 +265,27 @@ function formatMonth(date: string) {
   }).format(new Date(`${date.slice(0, 7)}-01T00:00:00Z`))
 }
 
-function getSkillIcon(tag: string): LucideIcon {
+function getSkillIcon(tag: string) {
   const normalizedTag = tag.toLowerCase()
 
   if (/azure|cloud/.test(normalizedTag)) return Cloud
   if (/postgres|mongo|database|sql/.test(normalizedTag)) return Database
-  if (/docker|container/.test(normalizedTag)) return Container
+  if (/docker|container/.test(normalizedTag)) return Package
   if (/playwright|vitest|test|regression/.test(normalizedTag)) {
-    return FlaskConical
+    return Flask
   }
   if (/github actions|gitlab ci|ci\/cd|workflow/.test(normalizedTag)) {
-    return Workflow
+    return GitBranch
   }
   if (/stripe|payment/.test(normalizedTag)) return CreditCard
   if (/access|role-based|security/.test(normalizedTag)) return ShieldCheck
   if (/gis|map/.test(normalizedTag)) return MapPin
   if (/bash|terminal|linux/.test(normalizedTag)) return Terminal
-  if (/html|css|tailwind|shadcn|ui/.test(normalizedTag)) return Layers
+  if (/html|css|tailwind|shadcn|ui/.test(normalizedTag)) return Stack
   if (/typescript|javascript|python|node|react|fastapi|django/.test(normalizedTag)) {
-    return Braces
+    return BracketsCurly
   }
-  return Code2
+  return Code
 }
 
 function SkillIcon({ tag }: { tag: string }) {
@@ -294,7 +294,9 @@ function SkillIcon({ tag }: { tag: string }) {
   return (
     <Icon
       aria-hidden="true"
-      className="size-3.5 shrink-0 text-[var(--primary)]"
+      size={18}
+      weight="duotone"
+      className="size-[18px] shrink-0 text-[var(--primary)]"
     />
   )
 }
@@ -358,7 +360,24 @@ function ProjectCard({
     <Card className="border border-[var(--line)] bg-[var(--card)] shadow-md transition-shadow hover:shadow-lg">
       <CardHeader>
         <CardTitle className="text-xl text-[var(--sea-ink)]">
-          {project.name}
+          {project.url ? (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-inherit no-underline hover:text-[var(--primary)]"
+            >
+              {project.name}
+              <ArrowSquareOut
+                aria-hidden="true"
+                size={20}
+                weight="duotone"
+              />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          ) : (
+            project.name
+          )}
         </CardTitle>
         <p className="font-medium text-[var(--primary)]">{project.role}</p>
       </CardHeader>

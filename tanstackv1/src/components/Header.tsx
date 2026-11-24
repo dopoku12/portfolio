@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-
+import { LinkedinLogo } from '@phosphor-icons/react'
 
 export default function Header() {
   return (
@@ -37,9 +37,12 @@ export default function Header() {
             className="hidden rounded-xl p-2 text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)] sm:block"
           >
             <span className="sr-only">David Opoku LinkedIn</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true" width="24" height="24" fill="navy">
-              <path d="M6.94 8.5A1.56 1.56 0 1 1 6.94 5.38a1.56 1.56 0 0 1 0 3.12ZM5.5 9.75h2.86v9.25H5.5V9.75Zm4.68 0h2.74v1.27h.04c.38-.72 1.32-1.48 2.71-1.48 2.9 0 3.43 1.9 3.43 4.38v5.08h-2.86v-4.74c0-1.13-.02-2.58-1.57-2.58-1.58 0-1.82 1.23-1.82 2.5v4.82H10.18V9.75Z" />
-            </svg>
+            <LinkedinLogo
+              aria-hidden="true"
+              size={28}
+              weight="fill"
+              className="text-[var(--primary)]"
+            />
           </a>
          
           

@@ -3,6 +3,7 @@ export default [
   {
     "name": "District Data",
     "role": "Lead Frontend Engineer",
+    "url": "https://districtdata.co/",
     "summary": "Architected and developed the frontend for a civic procurement discovery platform.",
     "tags": [
       "Next.js",
