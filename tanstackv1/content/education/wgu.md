@@ -1,17 +1,14 @@
 ---
 school: Western Governors University
-summary: Software Engineering Student (Fully Remote)
+summary: B.S. Software Engineering (In Progress)
 startDate: 2025-01-01
 endDate: 2028-01-01
 tags:
   [
     "Software Engineering",
     "Full Stack Development",
-    "JavaScript",
-    "React",
-    "Node.js",
-    "Web Development",
+    "Software Engineering Fundamentals",
   ]
 ---
 
-Currently a software engineering student at Western Governors University, a fully remote university program focused on software engineering fundamentals, full stack development, and practical application of modern engineering practices I am currently a junior.
+Western Governors University | B.S. Software Engineering (In Progress)

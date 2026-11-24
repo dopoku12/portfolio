@@ -1,8 +1,8 @@
 
 export default [
   {
-    "jobTitle": "Full Stack Software Engineer",
-    "summary": "Served as the office's first full-stack engineer, owning technical strategy across every application built for the office and delivering database-backed public-sector platforms.",
+    "jobTitle": "Full-Stack Software Engineer, Contract",
+    "summary": "Served as the office's first full-stack software engineer, establishing application development standards within a data analytics department.",
     "startDate": "2025-05-01",
     "endDate": "2026-01-01",
     "company": "City of Baltimore | Mayor's Office of Performance and Innovation",
@@ -12,16 +12,12 @@ export default [
       "FastAPI",
       "Django",
       "PostgreSQL",
-      "JWT",
-      "Access Control",
-      "Section 508",
-      "Microsoft Azure",
-      "Linux",
-      "GIS",
-      "MapLibre",
-      "Docker"
+      "Azure",
+      "Azure Blob Storage",
+      "Tailwind CSS",
+      "Role-Based Access"
     ],
-    "content": "Recruited as the Mayor's Office of Performance and Innovation's first full-stack engineer, owning technical strategy across every application built for the office.\n\n- Ran requirements gathering with program staff, coordinated across city departments, and sourced data from outside partners to scope each build.\n- Designed and built the Opioid Restitution Fund's reporting platform from scratch: a centralized, database-backed system powering quarterly financial, demographic, and performance reporting for the ORF office and its 11 partner organizations.\n- Built a citywide 311 service-request visualization tool (React, FastAPI, MapLibre) mapping requests with geospatial clustering; presented at Baltimore City's GIS Day.\n- Architected role-based access control (JWT + Django auth) across four user groups, securing sensitive data by role.\n- Delivered WCAG/Section 508-accessible UIs across both applications.\n- Built quarterly submission locking with admin override to match the program's reporting cadence.\n- Migrated legacy Excel reporting into structured Django schema migrations; managed deployments via SSH to Azure-hosted Linux VMs.\n- Authored onboarding and training documentation, enabling program staff to adopt the platform independently.",
+    "content": "- Served as the office's first full-stack software engineer, establishing application development standards within a data analytics department.\n- Worked directly with city leadership and agency stakeholders to translate business and reporting requirements into software solutions.\n- Architected and built a reporting platform from scratch for Baltimore's $579.9M Opioid Restitution Fund, replacing manual Excel workflows across 11 partner organizations.\n- Developed the platform with React, Django, and PostgreSQL, including role-based access, quarterly reporting workflows, validation, and document uploads through Azure Blob Storage.\n- Built a citywide 311 service-request mapping platform using React, FastAPI, and Tailwind CSS; presented the application at Baltimore City's annual GIS Day.\n- Deployed production applications to Azure Linux VMs and created system documentation and training materials for city administrators and grantees.",
     "_meta": {
       "filePath": "city-of-baltimore.md",
       "fileName": "city-of-baltimore.md",
@@ -31,24 +27,22 @@ export default [
     }
   },
   {
-    "jobTitle": "Cloud Apprentice",
-    "summary": "Provided cross-functional cloud and IT support at a Microsoft Solutions Partner serving government, higher-ed, and national security clients while resolving Azure incidents and improving operational visibility.",
+    "jobTitle": "Cloud Apprentice, Contract",
+    "summary": "Resolved Azure infrastructure incidents and service escalations for government and higher-education clients within SLA requirements.",
     "startDate": "2023-11-01",
     "endDate": "2024-07-01",
     "company": "Cloudforce",
     "location": "Oxon Hill, MD",
     "tags": [
-      "Microsoft Azure",
+      "Azure",
       "KQL",
       "SQL",
       "Grafana",
-      "CI/CD",
+      "Azure DevOps",
       "Bash",
-      "Power Platform",
-      "IT Support",
-      "SLA Management"
+      "Power Platform"
     ],
-    "content": "Provided cross-functional cloud and IT support at a Microsoft Solutions Partner serving government, higher-ed, and national security clients (UDC, AFSPA).\n\n- Resolved Azure incidents and staffed help desk escalations, maintaining SLA-driven response times for enterprise clients.\n- Analyzed resource usage and SLA performance via KQL/SQL and built Grafana dashboards for real-time service visibility.\n- Authored incident and SLA compliance documentation, standardizing processes still used by the team.\n- Built and documented a CI/CD pipeline for Power Platform deployments (Azure DevOps, Bash), streamlining manual deployment steps.",
+    "content": "- Resolved Azure infrastructure incidents and service escalations for government and higher-education clients within SLA requirements.\n- Built Grafana monitoring dashboards using KQL and SQL to track system performance and service availability.\n- Developed and documented a CI/CD pipeline for Power Platform deployments using Azure DevOps and Bash.",
     "_meta": {
       "filePath": "cloudforce.md",
       "fileName": "cloudforce.md",
@@ -58,8 +52,8 @@ export default [
     }
   },
   {
-    "jobTitle": "Software Engineer",
-    "summary": "Built payment tracking dashboards and enrollment features for an edtech startup, integrating Stripe and running regression testing to catch payment edge-case failures before release.",
+    "jobTitle": "Software Engineer, Contract",
+    "summary": "Developed enrollment features and payment-tracking dashboards using React, Node.js, and MongoDB.",
     "startDate": "2023-04-01",
     "endDate": "2023-12-01",
     "company": "Mathsolutely",
@@ -67,14 +61,11 @@ export default [
     "tags": [
       "React",
       "Node.js",
-      "Express",
       "MongoDB",
       "Stripe",
-      "Regression Testing",
-      "EdTech",
-      "Dashboard Development"
+      "Regression Testing"
     ],
-    "content": "Built payment tracking dashboards and integrated Stripe at an edtech startup serving students and teachers, giving founders real-time revenue visibility.\n\n- Shipped enrollment features (React, Node.js, Express, MongoDB) and ran black-box/regression testing to catch payment edge-case failures pre-release.",
+    "content": "- Developed enrollment features and payment-tracking dashboards using React, Node.js, and MongoDB.\n- Integrated Stripe payment APIs and performed regression testing for payment edge cases and transaction failures.",
     "_meta": {
       "filePath": "freelance.md",
       "fileName": "freelance.md",
@@ -84,8 +75,8 @@ export default [
     }
   },
   {
-    "jobTitle": "Full Stack Software Engineer",
-    "summary": "Joined the first engineering team on a federal IRS engagement, building foundational engineering practices, CI/CD, automated testing, and containerized deployment infrastructure from the ground up.",
+    "jobTitle": "Full-Stack Software Engineer",
+    "summary": "Built foundational DevOps infrastructure for a 5-person engineering team supporting a federal IRS engagement.",
     "startDate": "2026-01-01",
     "endDate": "2026-09-01",
     "company": "Pacific Consulting Group",
@@ -94,17 +85,14 @@ export default [
       "TypeScript",
       "React",
       "Python",
-      "Django",
-      "PostgreSQL",
-      "Docker",
-      "CI/CD",
       "GitHub Actions",
       "GitLab CI",
+      "Docker",
       "Nginx",
       "Playwright",
       "Vitest"
     ],
-    "content": "One of the first engineers on a federal IRS engagement with no existing dev process; built foundational engineering practices from scratch.\n\n- Built CI/CD pipelines with GitHub Actions and GitLab CI and introduced automated testing with Vitest and Playwright, adding quality gates where none existed.\n- Containerized the deployment pipeline with Docker and configured Nginx as a reverse proxy, laying the infrastructure foundation for production.",
+    "content": "- Built foundational DevOps infrastructure for a 5-person engineering team supporting a federal IRS engagement.\n- Designed CI/CD pipelines using GitHub Actions and GitLab CI, automating application builds and deployment workflows.\n- Containerized deployments with Docker and Nginx to maintain consistent development and staging environments.\n- Built automated testing suites with Vitest and Playwright for core application workflows.",
     "_meta": {
       "filePath": "pcg.md",
       "fileName": "pcg.md",

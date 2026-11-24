@@ -1,5 +1,5 @@
 ---
-school: Certifications
+school: Microsoft
 summary: Microsoft Certified: Azure Fundamentals (AZ-900)
 startDate: 2024-01-01
 tags:

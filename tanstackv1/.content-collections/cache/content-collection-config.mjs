@@ -29,8 +29,20 @@ var education = defineCollection({
     content: z.string()
   })
 });
+var projects = defineCollection({
+  name: "projects",
+  directory: "content/projects",
+  include: "**/*.md",
+  schema: z.object({
+    name: z.string(),
+    role: z.string(),
+    summary: z.string(),
+    tags: z.array(z.string()),
+    content: z.string()
+  })
+});
 var content_collections_default = defineConfig({
-  collections: [jobs, education]
+  collections: [jobs, education, projects]
 });
 export {
   content_collections_default as default

@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react'
 import { marked } from 'marked'
 
 import { createFileRoute } from '@tanstack/react-router'
-import { allJobs, allEducations } from 'content-collections'
+import { allJobs, allEducations, allProjects } from 'content-collections'
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/ui/card'
 import { Checkbox } from '#/components/ui/checkbox'
 import { Badge } from '#/components/ui/badge'
@@ -22,7 +22,6 @@ export const Route = createFileRoute('/')({
 function App() {
   const [selectedTags, setSelectedTags] = useState<string[]>([])
 
-  // Get unique tags from all jobs
   const allTags = useMemo(() => {
     const tags = new Set<string>()
     allJobs.forEach((job) => {
@@ -31,190 +30,267 @@ function App() {
     return Array.from(tags).sort()
   }, [])
 
-  // Filter jobs based on selected tags
   const filteredJobs = useMemo(() => {
     if (selectedTags.length === 0) return allJobs
+
     return allJobs.filter((job) =>
       selectedTags.some((tag) => job.tags.includes(tag)),
     )
   }, [selectedTags])
 
+  const toggleTag = (tag: string) => {
+    setSelectedTags((current) =>
+      current.includes(tag)
+        ? current.filter((item) => item !== tag)
+        : [...current, tag],
+    )
+  }
+
   return (
-    <>
-  
-      <div className="min-h-screen bg-linear-to-b from-gray-50 to-gray-100">
-        <div className="flex">
-          {/* Sidebar with filters */}
-          <div className="w-72 min-h-screen bg-white border-r shadow-sm p-8 sticky top-0">
-            <h3 className="text-lg font-semibold mb-6 text-gray-900">
-              Skills & Technologies
-            </h3>
-            <div className="space-y-4">
-              {allTags.map((tag) => (
-                <div key={tag} className="flex items-center space-x-3 group">
-                  <Checkbox
-                    id={tag}
-                    checked={selectedTags.includes(tag)}
-                    onCheckedChange={(checked) => {
-                      if (checked) {
-                        setSelectedTags([...selectedTags, tag])
-                      } else {
-                        setSelectedTags(selectedTags.filter((t) => t !== tag))
-                      }
-                    }}
-                    className="data-[state=checked]:bg-blue-600"
+    <div className="min-h-screen bg-[var(--background)]">
+      <div className="flex flex-col md:flex-row">
+        <aside className="border-b border-[var(--line)] bg-[var(--sidebar)] p-6 shadow-sm md:sticky md:top-0 md:min-h-screen md:w-72 md:border-b-0 md:border-r md:p-8">
+          <h3 className="mb-6 text-lg font-semibold text-[var(--sea-ink)]">
+            Skills & Technologies
+          </h3>
+
+          <div className="space-y-4">
+            {allTags.map((tag) => (
+              <SkillFilterItem
+                key={tag}
+                tag={tag}
+                checked={selectedTags.includes(tag)}
+                onToggle={toggleTag}
+              />
+            ))}
+          </div>
+        </aside>
+
+        <main className="flex-1 p-8 lg:p-12">
+          <div className="mx-auto max-w-4xl space-y-12">
+            <header className="space-y-4 text-center">
+              <h1 className="text-5xl font-bold text-[var(--sea-ink)]">
+                My Resume
+              </h1>
+              <p className="text-lg text-[var(--sea-ink-soft)]">
+                Professional Experience & Education
+              </p>
+              <Separator className="mt-8" />
+            </header>
+
+            <Card className="border border-[var(--line)] bg-[var(--card)] shadow-lg shadow-[oklch(0.42_0.035_158/0.08)]">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[var(--sea-ink)]">
+                  Career Summary
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-center gap-8">
+                  <p className="flex-1 leading-relaxed text-[var(--sea-ink-soft)]">
+                    Full-stack software engineer with 3+ years of experience
+                    building and deploying production applications for municipal
+                    and federal clients. Skilled in full-stack development,
+                    CI/CD automation, cloud infrastructure, and automated testing.
+                  </p>
+
+                  <img
+                    src="/headshot-on-white.jpg"
+                    alt="Professional headshot"
+                    className="h-52 w-44 rounded-2xl object-cover shadow-md transition-transform hover:scale-105"
                   />
-                  <label
-                    htmlFor={tag}
-                    className="text-sm font-medium leading-none text-gray-700 group-hover:text-gray-900 transition-colors cursor-pointer"
-                  >
-                    {tag}
-                  </label>
                 </div>
-              ))}
-            </div>
-          </div>
+              </CardContent>
+            </Card>
 
-          {/* Main content */}
-          <div className="flex-1 p-8 lg:p-12">
-            <div className="max-w-4xl mx-auto space-y-12">
-              <div className="text-center space-y-4">
-                <h1 className="text-5xl font-bold bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
-                  My Resume
-                </h1>
-                <p className="text-gray-600 text-lg">
-                  Professional Experience & Education
-                </p>
-                <Separator className="mt-8" />
+            <section className="space-y-6">
+              <h2 className="text-3xl font-semibold text-[var(--sea-ink)]">
+                Work Experience
+              </h2>
+
+              <div className="space-y-6">
+                {filteredJobs.map((job) => (
+                  <JobExperienceCard key={`${job.company}-${job.jobTitle}-${job.startDate}`} job={job} />
+                ))}
               </div>
+            </section>
 
-              {/* Career Summary */}
-              <Card className="border-0 shadow-lg bg-white/50 backdrop-blur-sm">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-gray-900">
-                    Career Summary
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center gap-8">
-                    <p className="text-gray-700 flex-1 leading-relaxed">
-                      I am a passionate and driven professional seeking
-                      opportunities that will leverage my extensive experience
-                      in frontend development while providing continuous growth
-                      and learning opportunities. My goal is to contribute to
-                      innovative projects that challenge me to expand my skill
-                      set and make meaningful impacts through technology.
-                    </p>
-                    <img
-                      src="/headshot-on-white.jpg"
-                      alt="Professional headshot"
-                      className="w-44 h-52 rounded-2xl object-cover shadow-md transition-transform hover:scale-105"
-                    />
-                  </div>
-                </CardContent>
-              </Card>
+            <section className="space-y-6">
+              <h2 className="text-3xl font-semibold text-[var(--sea-ink)]">
+                Projects
+              </h2>
 
-              {/* Work Experience */}
-              <section className="space-y-6">
-                <h2 className="text-3xl font-semibold text-gray-900">
-                  Work Experience
-                </h2>
-                <div className="space-y-6">
-                  {filteredJobs.map((job) => (
-                    <Card
-                      key={`${job.company}-${job.jobTitle}-${job.startDate}`}
-                      className="border-0 shadow-md hover:shadow-lg transition-shadow"
-                    >
-                      <CardHeader>
-                        <div className="flex justify-between items-start">
-                          <div className="space-y-2">
-                            <CardTitle className="text-xl text-gray-900">
-                              {job.jobTitle}
-                            </CardTitle>
-                            <p className="text-blue-600 font-medium">
-                              {job.company} - {job.location}
-                            </p>
-                          </div>
-                          <Badge variant="secondary" className="text-sm">
-                            {job.startDate} - {job.endDate || 'Present'}
-                          </Badge>
-                        </div>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-gray-700 mb-6 leading-relaxed">
-                          {job.summary}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {job.tags.map((tag) => (
-                            <HoverCard key={tag}>
-                              <HoverCardTrigger>
-                                <Badge
-                                  variant="outline"
-                                  className="hover:bg-gray-100 transition-colors cursor-pointer"
-                                >
-                                  {tag}
-                                </Badge>
-                              </HoverCardTrigger>
-                              <HoverCardContent className="w-64">
-                                <p className="text-sm text-gray-600">
-                                  Experience with {tag} in professional
-                                  development
-                                </p>
-                              </HoverCardContent>
-                            </HoverCard>
-                          ))}
-                        </div>
-                        {job.content && (
-                          <div
-                            className="mt-6 text-gray-700 prose prose-sm max-w-none"
-                            dangerouslySetInnerHTML={{
-                              __html: marked(job.content),
-                            }}
-                          />
-                        )}
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </section>
+              <div className="space-y-6">
+                {allProjects.map((project) => (
+                  <ProjectCard key={project.name} project={project} />
+                ))}
+              </div>
+            </section>
 
-              {/* Education */}
-              <section className="space-y-6">
-                <h2 className="text-3xl font-semibold text-gray-900">
-                  Education
-                </h2>
-                <div className="space-y-6">
-                  {allEducations.map((education) => (
-                    <Card
-                      key={education.school}
-                      className="border-0 shadow-md hover:shadow-lg transition-shadow"
-                    >
-                      <CardHeader>
-                        <CardTitle className="text-xl text-gray-900">
-                          {education.school}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <p className="text-gray-700 leading-relaxed">
-                          {education.summary}
-                        </p>
-                        {education.content && (
-                          <div
-                            className="mt-6 text-gray-700 prose prose-sm max-w-none"
-                            dangerouslySetInnerHTML={{
-                              __html: marked(education.content),
-                            }}
-                          />
-                        )}
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </section>
-            </div>
+            <section className="space-y-6">
+              <h2 className="text-3xl font-semibold text-[var(--sea-ink)]">
+                Education
+              </h2>
+
+              <div className="space-y-6">
+                {allEducations.map((education) => (
+                  <EducationCard key={education.school} education={education} />
+                ))}
+              </div>
+            </section>
           </div>
-        </div>
+        </main>
       </div>
-    </>
+    </div>
+  )
+}
+
+function SkillFilterItem({
+  tag,
+  checked,
+  onToggle,
+}: {
+  tag: string
+  checked: boolean
+  onToggle: (tag: string) => void
+}) {
+  return (
+    <div className="group flex items-center space-x-3">
+      <Checkbox
+        id={tag}
+        checked={checked}
+        onCheckedChange={() => onToggle(tag)}
+        className="data-[state=checked]:bg-[var(--primary)]"
+      />
+      <label
+        htmlFor={tag}
+        className="cursor-pointer text-sm font-medium leading-none text-[var(--sea-ink-soft)] transition-colors group-hover:text-[var(--sea-ink)]"
+      >
+        {tag}
+      </label>
+    </div>
+  )
+}
+
+function JobExperienceCard({ job }: { job: (typeof allJobs)[number] }) {
+  return (
+    <Card className="border border-[var(--line)] bg-[var(--card)] shadow-md transition-shadow hover:shadow-lg">
+      <CardHeader>
+        <div className="flex items-start justify-between">
+          <div className="space-y-2">
+            <CardTitle className="text-xl text-[var(--sea-ink)]">
+              {job.jobTitle}
+            </CardTitle>
+            <p className="font-medium text-[var(--primary)]">
+              {job.company} - {job.location}
+            </p>
+          </div>
+
+          <Badge variant="secondary" className="text-sm">
+            {job.startDate} - {job.endDate || 'Present'}
+          </Badge>
+        </div>
+      </CardHeader>
+
+      <CardContent>
+        <p className="mb-6 leading-relaxed text-[var(--sea-ink-soft)]">{job.summary}</p>
+
+        <div className="flex flex-wrap gap-2">
+          {job.tags.map((tag) => (
+            <HoverCard key={`${job.company}-${job.jobTitle}-${tag}`}>
+              <HoverCardTrigger>
+                <Badge
+                  variant="outline"
+                  className="cursor-pointer border-[var(--line)] text-[var(--sea-ink-soft)] transition-colors hover:bg-[var(--accent)]"
+                >
+                  {tag}
+                </Badge>
+              </HoverCardTrigger>
+
+              <HoverCardContent className="w-64">
+                <p className="text-sm text-[var(--sea-ink-soft)]">
+                  Experience with {tag} in professional development
+                </p>
+              </HoverCardContent>
+            </HoverCard>
+          ))}
+        </div>
+
+        {job.content && (
+          <div
+            className="prose prose-sm mt-6 max-w-none text-[var(--sea-ink-soft)]"
+            dangerouslySetInnerHTML={{
+              __html: marked(job.content),
+            }}
+          />
+        )}
+      </CardContent>
+    </Card>
+  )
+}
+
+function EducationCard({
+  education,
+}: {
+  education: (typeof allEducations)[number]
+}) {
+  return (
+    <Card className="border border-[var(--line)] bg-[var(--card)] shadow-md transition-shadow hover:shadow-lg">
+      <CardHeader>
+        <CardTitle className="text-xl text-[var(--sea-ink)]">
+          {education.school}
+        </CardTitle>
+      </CardHeader>
+
+      <CardContent>
+        <p className="leading-relaxed text-[var(--sea-ink-soft)]">{education.summary}</p>
+
+        {education.content && (
+          <div
+            className="prose prose-sm mt-6 max-w-none text-[var(--sea-ink-soft)]"
+            dangerouslySetInnerHTML={{
+              __html: marked(education.content),
+            }}
+          />
+        )}
+      </CardContent>
+    </Card>
+  )
+}
+
+function ProjectCard({
+  project,
+}: {
+  project: (typeof allProjects)[number]
+}) {
+  return (
+    <Card className="border border-[var(--line)] bg-[var(--card)] shadow-md transition-shadow hover:shadow-lg">
+      <CardHeader>
+        <CardTitle className="text-xl text-[var(--sea-ink)]">
+          {project.name}
+        </CardTitle>
+        <p className="font-medium text-[var(--primary)]">{project.role}</p>
+      </CardHeader>
+
+      <CardContent>
+        <p className="mb-6 leading-relaxed text-[var(--sea-ink-soft)]">
+          {project.summary}
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <Badge key={tag} variant="outline">
+              {tag}
+            </Badge>
+          ))}
+        </div>
+        {project.content && (
+          <div
+            className="prose prose-sm mt-6 max-w-none text-[var(--sea-ink-soft)]"
+            dangerouslySetInnerHTML={{
+              __html: marked(project.content),
+            }}
+          />
+        )}
+      </CardContent>
+    </Card>
   )
 }

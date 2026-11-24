@@ -1,7 +1,7 @@
 import { toolDefinition } from '@tanstack/ai'
 import { z } from 'zod'
 
-import { allJobs, allEducations } from 'content-collections'
+import { allJobs, allEducations, allProjects } from 'content-collections'
 
 // Tool definition for getting jobs by skill
 export const getJobsBySkillToolDef = toolDefinition({
@@ -97,6 +97,32 @@ export const getAllEducation = getAllEducationToolDef.server(() => {
     endDate: education.endDate,
     tags: education.tags,
     content: education.content,
+  }))
+})
+
+export const getAllProjectsToolDef = toolDefinition({
+  name: 'getAllProjects',
+  description:
+    "Get David Opoku's project portfolio, including project roles, summaries, technologies, and implementation details.",
+  inputSchema: z.object({}),
+  outputSchema: z.array(
+    z.object({
+      name: z.string(),
+      role: z.string(),
+      summary: z.string(),
+      tags: z.array(z.string()),
+      content: z.string(),
+    }),
+  ),
+})
+
+export const getAllProjects = getAllProjectsToolDef.server(() => {
+  return allProjects.map((project) => ({
+    name: project.name,
+    role: project.role,
+    summary: project.summary,
+    tags: project.tags,
+    content: project.content,
   }))
 })
 

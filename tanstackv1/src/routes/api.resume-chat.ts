@@ -9,6 +9,7 @@ import {
   getJobsBySkill,
   getAllJobs,
   getAllEducation,
+  getAllProjects,
   searchExperience,
 } from '#/lib/resume-tools'
 
@@ -36,11 +37,13 @@ CAPABILITIES:
 2. Use getAllJobs to get the candidate's complete work history with all details
 3. Use getAllEducation to get the candidate's educational background
 4. Use searchExperience to search for specific types of roles or experience by keywords
+5. Use getAllProjects to discuss David's project work
 
 INSTRUCTIONS:
 - When asked about specific technologies or skills, use getJobsBySkill to find relevant experience
 - When asked about overall experience or career progression, use getAllJobs
 - When asked about education or training, use getAllEducation
+- When asked about projects or frontend engineering work, use getAllProjects
 - When asked about specific types of roles (e.g., "senior", "lead"), use searchExperience
 - Be professional, concise, and helpful in your responses
 - Provide specific details from the resume when available
@@ -85,6 +88,7 @@ CONTEXT: You are helping evaluate this candidate's qualifications for potential 
               getJobsBySkill,
               getAllJobs,
               getAllEducation,
+              getAllProjects,
               searchExperience,
             ],
             systemPrompts: [SYSTEM_PROMPT],
