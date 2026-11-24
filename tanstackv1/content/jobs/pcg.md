@@ -19,7 +19,6 @@ tags:
   ]
 ---
 
-- Built foundational DevOps infrastructure for a 5-person engineering team supporting a federal IRS engagement.
 - Designed CI/CD pipelines using GitHub Actions and GitLab CI, automating application builds and deployment workflows.
 - Containerized deployments with Docker and Nginx to maintain consistent development and staging environments.
 - Built automated testing suites with Vitest and Playwright for core application workflows.

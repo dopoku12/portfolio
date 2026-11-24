@@ -1,5 +1,9 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowRight, EnvelopeSimple } from '@phosphor-icons/react'
+import {
+  ArrowRight,
+  EnvelopeSimple,
+  LinkedinLogo,
+} from '@phosphor-icons/react'
 import { Card, CardContent } from '#/components/ui/card'
 
 export const Route = createFileRoute('/')({
@@ -47,7 +51,21 @@ function Home() {
                   className="home-cta-secondary"
                 >
                   <EnvelopeSimple aria-hidden="true" size={18} weight="bold" />
-                  Get in touch
+                  dopoku.tech@gmail.com
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/david-o-7008721b7/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="home-cta-secondary"
+                >
+                  <LinkedinLogo
+                    aria-hidden="true"
+                    size={18}
+                    weight="fill"
+                    className="text-[#0A66C2]"
+                  />
+                  LinkedIn
                 </a>
               </div>
               <p className="mb-0 mt-6 text-sm text-[var(--sea-ink-soft)]">

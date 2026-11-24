@@ -15,5 +15,4 @@ tags:
   ]
 ---
 
-- Developed enrollment features and payment-tracking dashboards using React, Node.js, and MongoDB.
 - Integrated Stripe payment APIs and performed regression testing for payment edge cases and transaction failures.

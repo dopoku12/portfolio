@@ -17,7 +17,7 @@ export default [
       "Tailwind CSS",
       "Role-Based Access"
     ],
-    "content": "- Served as the office's first full-stack software engineer, establishing application development standards within a data analytics department.\n- Worked directly with city leadership and agency stakeholders to translate business and reporting requirements into software solutions.\n- Architected and built a reporting platform from scratch for Baltimore's $579.9M Opioid Restitution Fund, replacing manual Excel workflows across 11 partner organizations.\n- Developed the platform with React, Django, and PostgreSQL, including role-based access, quarterly reporting workflows, validation, and document uploads through Azure Blob Storage.\n- Built a citywide 311 service-request mapping platform using React, FastAPI, and Tailwind CSS; presented the application at Baltimore City's annual GIS Day.\n- Deployed production applications to Azure Linux VMs and created system documentation and training materials for city administrators and grantees.",
+    "content": "- Worked directly with city leadership and agency stakeholders to translate business and reporting requirements into software solutions.\n- Architected and built a reporting platform from scratch for Baltimore's $579.9M Opioid Restitution Fund, replacing manual Excel workflows across 11 partner organizations.\n- Developed the platform with React, Django, and PostgreSQL, including role-based access, quarterly reporting workflows, validation, and document uploads through Azure Blob Storage.\n- Built a citywide 311 service-request mapping platform using React, FastAPI, and Tailwind CSS; presented the application at Baltimore City's annual GIS Day.\n- Deployed production applications to Azure Linux VMs and created system documentation and training materials for city administrators and grantees.",
     "_meta": {
       "filePath": "city-of-baltimore.md",
       "fileName": "city-of-baltimore.md",
@@ -42,7 +42,7 @@ export default [
       "Bash",
       "Power Platform"
     ],
-    "content": "- Resolved Azure infrastructure incidents and service escalations for government and higher-education clients within SLA requirements.\n- Built Grafana monitoring dashboards using KQL and SQL to track system performance and service availability.\n- Developed and documented a CI/CD pipeline for Power Platform deployments using Azure DevOps and Bash.",
+    "content": "- Built Grafana monitoring dashboards using KQL and SQL to track system performance and service availability.\n- Developed and documented a CI/CD pipeline for Power Platform deployments using Azure DevOps and Bash.",
     "_meta": {
       "filePath": "cloudforce.md",
       "fileName": "cloudforce.md",
@@ -65,7 +65,7 @@ export default [
       "Stripe",
       "Regression Testing"
     ],
-    "content": "- Developed enrollment features and payment-tracking dashboards using React, Node.js, and MongoDB.\n- Integrated Stripe payment APIs and performed regression testing for payment edge cases and transaction failures.",
+    "content": "- Integrated Stripe payment APIs and performed regression testing for payment edge cases and transaction failures.",
     "_meta": {
       "filePath": "freelance.md",
       "fileName": "freelance.md",
@@ -92,7 +92,7 @@ export default [
       "Playwright",
       "Vitest"
     ],
-    "content": "- Built foundational DevOps infrastructure for a 5-person engineering team supporting a federal IRS engagement.\n- Designed CI/CD pipelines using GitHub Actions and GitLab CI, automating application builds and deployment workflows.\n- Containerized deployments with Docker and Nginx to maintain consistent development and staging environments.\n- Built automated testing suites with Vitest and Playwright for core application workflows.",
+    "content": "- Designed CI/CD pipelines using GitHub Actions and GitLab CI, automating application builds and deployment workflows.\n- Containerized deployments with Docker and Nginx to maintain consistent development and staging environments.\n- Built automated testing suites with Vitest and Playwright for core application workflows.",
     "_meta": {
       "filePath": "pcg.md",
       "fileName": "pcg.md",

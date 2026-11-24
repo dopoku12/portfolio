@@ -18,7 +18,6 @@ tags:
   ]
 ---
 
-- Served as the office's first full-stack software engineer, establishing application development standards within a data analytics department.
 - Worked directly with city leadership and agency stakeholders to translate business and reporting requirements into software solutions.
 - Architected and built a reporting platform from scratch for Baltimore's $579.9M Opioid Restitution Fund, replacing manual Excel workflows across 11 partner organizations.
 - Developed the platform with React, Django, and PostgreSQL, including role-based access, quarterly reporting workflows, validation, and document uploads through Azure Blob Storage.

@@ -49,6 +49,31 @@ import {
   ArrowSquareOut,
 } from '@phosphor-icons/react'
 
+const skillCategories: Record<string, Array<string>> = {
+  Frontend: ['React', 'Tailwind CSS', 'TypeScript'],
+  Backend: [
+    'Django',
+    'FastAPI',
+    'Node.js',
+    'Python',
+    'Role-Based Access',
+    'Stripe',
+  ],
+  DevOps: [
+    'Azure',
+    'Azure Blob Storage',
+    'Azure DevOps',
+    'Bash',
+    'Docker',
+    'GitHub Actions',
+    'GitLab CI',
+    'Nginx',
+    'Power Platform',
+  ],
+  Data: ['Grafana', 'KQL', 'MongoDB', 'PostgreSQL', 'SQL'],
+  Testing: ['Playwright', 'Regression Testing', 'Vitest'],
+}
+
 export const Route = createFileRoute('/resume')({
   component: App,
 })
@@ -72,6 +97,17 @@ function App() {
     return Array.from(tags).sort()
   }, [jobsNewestFirst])
 
+  const groupedSkills = useMemo(
+    () =>
+      Object.entries(skillCategories)
+        .map(([category, categoryTags]) => ({
+          category,
+          tags: allTags.filter((tag) => categoryTags.includes(tag)),
+        }))
+        .filter((group) => group.tags.length > 0),
+    [allTags],
+  )
+
   const filteredJobs = useMemo(() => {
     if (selectedTags.length === 0) return jobsNewestFirst
 
@@ -89,21 +125,31 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <div className="min-h-screen">
       <div className="flex flex-col md:flex-row">
-        <aside className="border-b border-[var(--line)] bg-[var(--sidebar)] p-6 shadow-sm md:sticky md:top-0 md:min-h-screen md:w-72 md:border-b-0 md:border-r md:p-8">
+        <aside className="border-b border-[var(--line)] bg-[var(--sidebar)] p-6 shadow-sm backdrop-blur-xl md:sticky md:top-0 md:min-h-screen md:w-72 md:border-b-0 md:border-r md:p-8">
+          <p className="island-kicker mb-1">Filter by skill</p>
           <h3 className="mb-6 text-lg font-semibold text-[var(--sea-ink)]">
             Skills & Technologies
           </h3>
 
-          <div className="space-y-4">
-            {allTags.map((tag) => (
-              <SkillFilterItem
-                key={tag}
-                tag={tag}
-                checked={selectedTags.includes(tag)}
-                onToggle={toggleTag}
-              />
+          <div className="space-y-6">
+            {groupedSkills.map(({ category, tags }) => (
+              <section key={category} aria-label={`${category} skills`}>
+                <h4 className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-[var(--sea-ink-soft)]">
+                  {category}
+                </h4>
+                <div className="space-y-3">
+                  {tags.map((tag) => (
+                    <SkillFilterItem
+                      key={tag}
+                      tag={tag}
+                      checked={selectedTags.includes(tag)}
+                      onToggle={toggleTag}
+                    />
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </aside>
