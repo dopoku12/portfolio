@@ -25,6 +25,8 @@ var education = defineCollection({
     summary: z.string(),
     startDate: z.string(),
     endDate: z.string().optional(),
+    url: z.string().url().optional(),
+    status: z.string().optional(),
     tags: z.array(z.string()),
     content: z.string()
   })
