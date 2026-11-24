@@ -48,6 +48,7 @@
   "devDependencies": {
     "@content-collections/core": "^0.13.1",
     "@content-collections/vite": "^0.3.0",
+    "@netlify/vite-plugin-tanstack-start": "^1.3.19",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/eslint-config": "latest",
     "@tanstack/router-cli": "^1.132.0",
@@ -57,7 +58,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "eslint": "^9.20.0",
     "prettier": "^3.8.1",
-    "typescript": "^6.0.2",
+    "typescript": "^5.9.3",
     "vite": "^8.0.0"
   },
   "pnpm": {
