@@ -30,12 +30,13 @@ function Home() {
               <h3 className="display-title mb-4 text-2xl font-semibold text-[var(--sea-ink)] sm:text-3xl">
                 Building software that makes a difference.
               </h3>
-              <p className="mb-6 max-w-2xl leading-relaxed text-[var(--sea-ink-soft)]">
+              <p className="mb-6 max-w-3xl leading-relaxed text-[var(--sea-ink-soft)]">
                 Full-stack software engineer with 3+ years of experience
-                building and deploying practical, dependable production
-                applications for municipal and federal clients. Skilled in
-                full-stack development, CI/CD automation, cloud infrastructure,
-                and automated testing.
+                building and deploying production applications for
+                municipalities and the federal government. I bring full-stack
+                development, CI/CD automation, cloud infrastructure, and
+                automated testing to projects that solve meaningful real-world
+                problems.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link to="/resume" className="home-cta">

@@ -2,7 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 
-import appCss from '../styles.css?url'
+import appCss from '../css/index.css?url'
 
 const THEME_INIT_SCRIPT = `(function(){try{var root=document.documentElement;root.classList.remove('dark');root.classList.add('light');root.removeAttribute('data-theme');root.style.colorScheme='light';}catch(e){}})();`
 
@@ -22,7 +22,7 @@ export const Route = createRootRoute({
       {
         name: 'description',
         content:
-          'Portfolio and resume of David Opoku, a full-stack software engineer building production applications for municipal and federal clients.',
+          'Portfolio and resume of David Opoku, a full-stack software engineer building reliable applications that solve meaningful real-world problems.',
       },
     ],
     links: [

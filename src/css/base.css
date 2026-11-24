@@ -1,0 +1,43 @@
+body {
+  @apply m-0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  background-color: var(--background);
+  background-image:
+    radial-gradient(
+      ellipse 75% 55% at 10% -10%,
+      oklch(0.38 0.08 255 / 0.55),
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 92% 18%,
+      oklch(0.42 0.1 158 / 0.2),
+      transparent 68%
+    ),
+    linear-gradient(
+      135deg,
+      oklch(0.14 0.04 255),
+      oklch(0.2 0.045 255) 48%,
+      oklch(0.14 0.035 230)
+    );
+  background-attachment: fixed;
+}
+
+code {
+  font-family:
+    source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

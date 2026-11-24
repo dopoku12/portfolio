@@ -20,9 +20,7 @@ function getSiteOrigin() {
 
 export const Route = createFileRoute('/projects/$slug')({
   loader: ({ params }) => {
-    const project = allProjects.find(
-      (item) => item._meta.path === params.slug,
-    )
+    const project = allProjects.find((item) => item._meta.path === params.slug)
 
     if (!project) {
       throw notFound()
@@ -36,9 +34,7 @@ export const Route = createFileRoute('/projects/$slug')({
     const { project } = loaderData
     const origin = getSiteOrigin()
     const pageUrl = new URL(`/projects/${project._meta.path}`, origin).href
-    const imageUrl = project.ogImage
-      ? new URL(project.ogImage).href
-      : new URL('/headshot-on-white.jpg', origin).href
+    const imageUrl = project.ogImage ? new URL(project.ogImage).href : undefined
     const title = `${project.name} | David Opoku`
 
     return {
@@ -49,13 +45,23 @@ export const Route = createFileRoute('/projects/$slug')({
         { property: 'og:title', content: title },
         { property: 'og:description', content: project.summary },
         { property: 'og:url', content: pageUrl },
-        { property: 'og:image', content: imageUrl },
-        { property: 'og:image:alt', content: `${project.name} project preview` },
+        ...(imageUrl
+          ? [
+              { property: 'og:image', content: imageUrl },
+              {
+                property: 'og:image:alt',
+                content: `${project.name} project preview`,
+              },
+            ]
+          : []),
         { property: 'og:site_name', content: 'David Opoku Portfolio' },
-        { name: 'twitter:card', content: 'summary_large_image' },
+        {
+          name: 'twitter:card',
+          content: imageUrl ? 'summary_large_image' : 'summary',
+        },
         { name: 'twitter:title', content: title },
         { name: 'twitter:description', content: project.summary },
-        { name: 'twitter:image', content: imageUrl },
+        ...(imageUrl ? [{ name: 'twitter:image', content: imageUrl }] : []),
       ],
       links: [{ rel: 'canonical', href: pageUrl }],
     }

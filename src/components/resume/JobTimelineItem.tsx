@@ -15,10 +15,10 @@ import { SkillBadge } from '#/components/resume/ResumeSkills'
 
 const employerLogos: Record<string, string> = {
   "City of Baltimore | Mayor's Office of Performance and Innovation":
-    '/bmore.jpg',
-  Cloudforce: '/gocloudforce_logo.jpg',
-  Mathsolutely: '/mathsolutely_logo.jpg',
-  'Pacific Consulting Group': '/pacific_consulting_group_logo.jpg',
+    '/assets/logos/bmore.jpg',
+  Cloudforce: '/assets/logos/gocloudforce_logo.jpg',
+  Mathsolutely: '/assets/logos/mathsolutely_logo.jpg',
+  'Pacific Consulting Group': '/assets/logos/pacific_consulting_group_logo.jpg',
 }
 
 export default function JobTimelineItem({ job }: { job: Job }) {
