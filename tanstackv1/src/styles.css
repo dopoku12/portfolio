@@ -159,3 +159,81 @@ code {
 .resume-task-list li::marker {
   color: var(--primary);
 }
+
+.home-hero {
+  background:
+    radial-gradient(
+      circle at 90% 15%,
+      oklch(0.94 0.035 158 / 0.7),
+      transparent 30rem
+    ),
+    var(--card);
+}
+
+.home-cta,
+.home-cta-secondary {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 1px solid var(--primary);
+  border-radius: 9999px;
+  padding: 0.65rem 1.15rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.home-cta {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.home-cta-secondary {
+  background: var(--card);
+  color: var(--sea-ink);
+}
+
+.home-cta:hover,
+.home-cta-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.home-cta-secondary:hover {
+  background: var(--accent);
+}
+
+@keyframes home-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-enter {
+  animation: home-enter 650ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.home-enter-delay-1 {
+  animation-delay: 140ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-enter,
+  .home-enter-delay-1 {
+    animation: none;
+  }
+
+  .home-cta,
+  .home-cta-secondary {
+    transition: none;
+  }
+}

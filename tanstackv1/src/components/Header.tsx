@@ -15,6 +15,13 @@ export default function Header() {
             Home
           </Link>
           <Link
+            to="/resume"
+            className="nav-link"
+            activeProps={{ className: 'nav-link is-active' }}
+          >
+            Resume
+          </Link>
+          <Link
             to="/about"
             className="nav-link"
             activeProps={{ className: 'nav-link is-active' }}
@@ -41,7 +48,7 @@ export default function Header() {
               aria-hidden="true"
               size={28}
               weight="fill"
-              className="text-[var(--primary)]"
+              className="text-[#0A66C2]"
             />
           </a>
          
