@@ -5,6 +5,7 @@ import {
   Atom,
   Browser,
   BracketsCurly,
+  CaretDown,
   ChartLine,
   Cloud,
   Code,
@@ -62,10 +63,12 @@ export function ResumeSkillsSidebar({
   jobs,
   selectedTags,
   onToggle,
+  onClear,
 }: {
   jobs: Job[]
   selectedTags: string[]
   onToggle: (tag: string) => void
+  onClear: () => void
 }) {
   const groupedSkills = useMemo(() => {
     const allTags = Array.from(new Set(jobs.flatMap((job) => job.tags))).sort()
@@ -79,32 +82,100 @@ export function ResumeSkillsSidebar({
   }, [jobs])
 
   return (
-    <aside className="border-b border-[var(--line)] bg-[var(--sidebar)] p-6 shadow-sm backdrop-blur-xl md:sticky md:top-0 md:min-h-screen md:w-72 md:border-b-0 md:border-r md:p-8">
-      <p className="island-kicker mb-1">Filter by skill</p>
-      <h3 className="mb-6 text-lg font-semibold text-[var(--sea-ink)]">
-        Skills & Technologies
-      </h3>
+    <aside
+      aria-label="Resume skill filters"
+      className="border-b border-[var(--line)] bg-[var(--sidebar)] p-4 shadow-sm backdrop-blur-xl md:sticky md:top-0 md:min-h-screen md:w-72 md:border-b-0 md:border-r md:p-8"
+    >
+      <details className="group md:hidden">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
+          <span>
+            <span className="block font-semibold text-[var(--sea-ink)]">
+              Filter by skill
+            </span>
+            <span className="mt-0.5 block text-sm text-[var(--sea-ink-soft)]">
+              {selectedTags.length
+                ? `${selectedTags.length} selected`
+                : 'Optional — narrow work experience'}
+            </span>
+          </span>
+          <CaretDown
+            aria-hidden="true"
+            size={20}
+            className="shrink-0 text-[var(--primary)] transition-transform group-open:rotate-180"
+          />
+        </summary>
 
-      <div className="space-y-6">
-        {groupedSkills.map(({ category, tags }) => (
-          <section key={category} aria-label={`${category} skills`}>
-            <h4 className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-[var(--sea-ink-soft)]">
-              {category}
-            </h4>
-            <div className="space-y-3">
-              {tags.map((tag) => (
-                <SkillFilterItem
-                  key={tag}
-                  tag={tag}
-                  checked={selectedTags.includes(tag)}
-                  onToggle={onToggle}
-                />
-              ))}
-            </div>
-          </section>
-        ))}
+        <div className="mt-4 max-h-64 overflow-y-auto rounded-xl border border-[var(--line)] bg-[var(--card)] p-4">
+          {selectedTags.length > 0 && (
+            <button
+              type="button"
+              onClick={onClear}
+              className="mb-4 text-sm font-medium text-[var(--primary)] underline-offset-4 hover:underline"
+            >
+              Clear filters
+            </button>
+          )}
+          <SkillCategoryList
+            groupedSkills={groupedSkills}
+            selectedTags={selectedTags}
+            onToggle={onToggle}
+          />
+        </div>
+      </details>
+
+      <div className="hidden md:block">
+        <p className="island-kicker mb-1">Filter by skill</p>
+        <h3 className="mb-6 text-lg font-semibold text-[var(--sea-ink)]">
+          Skills & Technologies
+        </h3>
+        {selectedTags.length > 0 && (
+          <button
+            type="button"
+            onClick={onClear}
+            className="mb-4 text-sm font-medium text-[var(--primary)] underline-offset-4 hover:underline"
+          >
+            Clear filters
+          </button>
+        )}
+        <SkillCategoryList
+          groupedSkills={groupedSkills}
+          selectedTags={selectedTags}
+          onToggle={onToggle}
+        />
       </div>
     </aside>
+  )
+}
+
+function SkillCategoryList({
+  groupedSkills,
+  selectedTags,
+  onToggle,
+}: {
+  groupedSkills: Array<{ category: string; tags: string[] }>
+  selectedTags: string[]
+  onToggle: (tag: string) => void
+}) {
+  return (
+    <div className="space-y-6">
+      {groupedSkills.map(({ category, tags }) => (
+        <section key={category} aria-label={`${category} skills`}>
+          <h4 className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-[var(--sea-ink-soft)]">
+            {category}
+          </h4>
+          <div className="space-y-3">
+            {tags.map((tag) => (
+              <SkillFilterItem
+                key={tag}
+                tag={tag}
+                checked={selectedTags.includes(tag)}
+                onToggle={onToggle}
+              />
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
   )
 }
 

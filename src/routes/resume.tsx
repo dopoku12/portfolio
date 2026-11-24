@@ -55,9 +55,10 @@ function ResumePage() {
           jobs={jobsNewestFirst}
           selectedTags={selectedTags}
           onToggle={toggleTag}
+          onClear={() => setSelectedTags([])}
         />
 
-        <main className="flex-1 p-8 lg:p-12">
+        <main className="flex-1 p-4 sm:p-8 lg:p-12">
           <div className="mx-auto max-w-4xl space-y-12">
             <header className="space-y-4 text-center">
               <h1 className="text-5xl font-bold text-[var(--sea-ink)]">
