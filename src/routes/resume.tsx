@@ -8,7 +8,7 @@ import JobTimelineItem from '#/components/resume/JobTimelineItem'
 import ProjectCard from '#/components/resume/ProjectCard'
 import { ResumeSkillsSidebar } from '#/components/resume/ResumeSkills'
 import { Separator } from '#/components/ui/separator'
-import { Trace } from '#/components/ui/trace'
+import { Timeline } from '#/components/ui/timeline'
 
 const certifications = allEducations.filter((item) =>
   item.tags.includes('Certification'),
@@ -74,14 +74,14 @@ function ResumePage() {
               <h2 className="text-3xl font-semibold text-[var(--sea-ink)]">
                 Work Experience
               </h2>
-              <Trace className="gap-5">
+              <Timeline className="gap-5">
                 {filteredJobs.map((job) => (
                   <JobTimelineItem
                     key={`${job.company}-${job.jobTitle}-${job.startDate}`}
                     job={job}
                   />
                 ))}
-              </Trace>
+              </Timeline>
             </section>
 
             <section className="space-y-6">

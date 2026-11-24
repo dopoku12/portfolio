@@ -1,12 +1,35 @@
 import { useRef, useState } from 'react'
 
 import { Link } from '@tanstack/react-router'
-import {
-  EnvelopeSimple,
-  LinkedinLogo,
-  List,
-  X,
-} from '@phosphor-icons/react'
+import { EnvelopeSimple, LinkedinLogo, List, X } from '@phosphor-icons/react'
+
+const navigationLinks = [
+  { to: '/', label: 'Home' },
+  { to: '/resume', label: 'Resume' },
+  { to: '/about', label: 'About' },
+] as const
+
+function NavigationLinks({
+  mobile = false,
+  onNavigate,
+}: {
+  mobile?: boolean
+  onNavigate?: () => void
+}) {
+  const className = mobile ? 'nav-link w-full' : 'nav-link'
+
+  return navigationLinks.map(({ to, label }) => (
+    <Link
+      key={to}
+      to={to}
+      onClick={onNavigate}
+      className={className}
+      activeProps={{ className: `${className} is-active` }}
+    >
+      {label}
+    </Link>
+  ))
+}
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -38,28 +61,7 @@ export default function Header() {
             aria-label="Main navigation"
             className="hidden items-center gap-1 text-sm font-semibold md:flex"
           >
-            <Link
-              to="/"
-              className="nav-link"
-              activeProps={{ className: 'nav-link is-active' }}
-            >
-              Home
-            </Link>
-            <Link
-              to="/resume"
-              className="nav-link"
-              activeProps={{ className: 'nav-link is-active' }}
-            >
-              Resume
-            </Link>
-            <Link
-              to="/about"
-              className="nav-link"
-              activeProps={{ className: 'nav-link is-active' }}
-            >
-              About
-            </Link>
-
+            <NavigationLinks />
             <span
               aria-hidden="true"
               className="mx-2 h-6 w-px bg-[var(--line)]"
@@ -93,7 +95,9 @@ export default function Header() {
           <button
             ref={menuButtonRef}
             type="button"
-            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-label={
+              mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'
+            }
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
             onClick={() => setMobileMenuOpen((open) => !open)}
@@ -114,35 +118,13 @@ export default function Header() {
           className="border-t border-[var(--line)] py-3 md:hidden"
         >
           <div className="grid gap-1 text-base font-semibold">
-            <Link
-              to="/"
-              onClick={closeMobileMenu}
-              className="nav-link w-full"
-              activeProps={{ className: 'nav-link is-active w-full' }}
-            >
-              Home
-            </Link>
-            <Link
-              to="/resume"
-              onClick={closeMobileMenu}
-              className="nav-link w-full"
-              activeProps={{ className: 'nav-link is-active w-full' }}
-            >
-              Resume
-            </Link>
-            <Link
-              to="/about"
-              onClick={closeMobileMenu}
-              className="nav-link w-full"
-              activeProps={{ className: 'nav-link is-active w-full' }}
-            >
-              About
-            </Link>
+            <NavigationLinks mobile onNavigate={closeMobileMenu} />
           </div>
 
           <div className="mt-3 grid grid-cols-2 gap-2 border-t border-[var(--line)] pt-3">
             <a
               href="mailto:dopoku.tech@gmail.com"
+              onClick={closeMobileMenu}
               className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-semibold text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
             >
               <EnvelopeSimple aria-hidden="true" size={20} />
@@ -152,6 +134,7 @@ export default function Header() {
               href="https://www.linkedin.com/in/david-o-7008721b7/"
               target="_blank"
               rel="noreferrer"
+              onClick={closeMobileMenu}
               className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-semibold text-[var(--sea-ink-soft)] transition hover:bg-[var(--link-bg-hover)] hover:text-[var(--sea-ink)]"
             >
               <LinkedinLogo

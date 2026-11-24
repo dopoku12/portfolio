@@ -1,7 +1,7 @@
 import type { Education } from 'content-collections'
 import { ArrowSquareOut } from '@phosphor-icons/react'
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/ui/card'
-import { formatResumeDate } from '#/components/resume/date'
+import { formatResumeDate } from '#/components/resume/date-formatters'
 
 export default function CertificationCard({
   certification,
