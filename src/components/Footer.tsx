@@ -7,7 +7,6 @@ export default function Footer() {
         <p className="m-0 text-sm">
           &copy; {year} David Opoku. All rights reserved.
         </p>
-        <p className="island-kicker m-0">Full-Stack Software Engineer</p>
       </div>
     </footer>
   )

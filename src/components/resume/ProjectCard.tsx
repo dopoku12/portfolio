@@ -1,4 +1,5 @@
-import { ArrowSquareOut } from '@phosphor-icons/react'
+import { ArrowRight, ArrowSquareOut } from '@phosphor-icons/react'
+import { Link } from '@tanstack/react-router'
 import type { Project } from 'content-collections'
 import { Card, CardContent, CardHeader, CardTitle } from '#/components/ui/card'
 import ResumeMarkdown from '#/components/resume/ResumeMarkdown'
@@ -9,20 +10,14 @@ export default function ProjectCard({ project }: { project: Project }) {
     <Card className="border border-[var(--line)] bg-[var(--card)] shadow-md transition-shadow hover:shadow-lg">
       <CardHeader>
         <CardTitle className="text-xl text-[var(--sea-ink)]">
-          {project.url ? (
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 text-inherit no-underline hover:text-[var(--primary)]"
-            >
-              {project.name}
-              <ArrowSquareOut aria-hidden="true" size={20} weight="duotone" />
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
-          ) : (
-            project.name
-          )}
+          <Link
+            to="/projects/$slug"
+            params={{ slug: project._meta.path }}
+            className="inline-flex items-center gap-2 text-inherit no-underline hover:text-[var(--primary)]"
+          >
+            {project.name}
+            <ArrowRight aria-hidden="true" size={20} weight="duotone" />
+          </Link>
         </CardTitle>
         <p className="font-medium text-[var(--primary)]">{project.role}</p>
       </CardHeader>
@@ -36,6 +31,22 @@ export default function ProjectCard({ project }: { project: Project }) {
             <SkillBadge key={tag} tag={tag} />
           ))}
         </div>
+        {project.url && (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-6 inline-flex items-center gap-2 font-semibold text-[var(--primary)] hover:underline"
+          >
+            Visit live project
+            <ArrowSquareOut
+              aria-hidden="true"
+              size={18}
+              weight="duotone"
+            />
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
+        )}
         {project.content && (
           <ResumeMarkdown
             content={project.content}

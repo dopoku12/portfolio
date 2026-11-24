@@ -24,10 +24,12 @@ function Home() {
               >
                 David Opoku
               </h1>
-              <p className="island-kicker mb-2">Career</p>
-              <h2 className="display-title mb-4 text-3xl font-semibold text-[var(--sea-ink)] sm:text-4xl">
-                Building software that makes a difference.
+              <h2 className="display-title mb-4 text-3xl font-semibold text-[var(--primary)] sm:text-4xl">
+                Full-Stack Software Engineer
               </h2>
+              <h3 className="display-title mb-4 text-2xl font-semibold text-[var(--sea-ink)] sm:text-3xl">
+                Building software that makes a difference.
+              </h3>
               <p className="mb-6 max-w-2xl leading-relaxed text-[var(--sea-ink-soft)]">
                 Full-stack software engineer with 3+ years of experience
                 building and deploying practical, dependable production

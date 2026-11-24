@@ -13,15 +13,32 @@ import { formatResumeMonth } from '#/components/resume/date-formatters'
 import ResumeMarkdown from '#/components/resume/ResumeMarkdown'
 import { SkillBadge } from '#/components/resume/ResumeSkills'
 
+const employerLogos: Record<string, string> = {
+  "City of Baltimore | Mayor's Office of Performance and Innovation":
+    '/bmore.jpg',
+  Cloudforce: '/gocloudforce_logo.jpg',
+  Mathsolutely: '/mathsolutely_logo.jpg',
+  'Pacific Consulting Group': '/pacific_consulting_group_logo.jpg',
+}
+
 export default function JobTimelineItem({ job }: { job: Job }) {
   const dateRange = `${formatResumeMonth(job.startDate)} – ${job.endDate ? formatResumeMonth(job.endDate) : 'Present'}`
+  const employerLogo = employerLogos[job.company]
 
   return (
     <TimelineCollapsible defaultOpen>
       <TimelineTrigger className="w-full">
         <TimelineItem className="w-full items-start gap-3 rounded-xl border border-[var(--line)] bg-[var(--card)] p-4 shadow-sm hover:bg-[var(--accent)]">
           <TimelineIcon className="mt-0.5 size-10 rounded-full bg-[var(--accent)] text-[var(--primary)] [&_svg:not([class*='size-'])]:size-5">
-            <Briefcase aria-hidden="true" size={22} weight="duotone" />
+            {employerLogo ? (
+              <img
+                src={employerLogo}
+                alt=""
+                className="size-full rounded-md object-contain"
+              />
+            ) : (
+              <Briefcase aria-hidden="true" size={22} weight="duotone" />
+            )}
           </TimelineIcon>
           <span className="min-w-0 flex-1">
             <TimelineTitle className="block text-base font-semibold text-[var(--sea-ink)]">

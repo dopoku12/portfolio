@@ -39,6 +39,7 @@ var projects = defineCollection({
     name: z.string(),
     role: z.string(),
     url: z.string().url().optional(),
+    ogImage: z.string().url().optional(),
     summary: z.string(),
     tags: z.array(z.string()),
     content: z.string()

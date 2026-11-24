@@ -2,6 +2,7 @@
 name: District Data
 role: Lead Frontend Engineer
 url: https://districtdata.co/
+ogImage: https://districtdata.co/og-image.png
 summary: Architected and developed the frontend for a civic procurement discovery platform.
 tags: ['Next.js', 'TanStack', 'Tailwind CSS', 'Shadcn']
 ---
